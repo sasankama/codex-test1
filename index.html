@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Home</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <header class="hero">
+        <p class="kicker">{{ role }}</p>
+        <h1>{{ name }}</h1>
+        <p class="intro">{{ intro }}</p>
+        <div class="actions">
+          <a class="btn primary" :href="`mailto:${email}`">Hire Me</a>
+          <a class="btn" href="#projects">View Projects</a>
+        </div>
+      </header>
+
+      <main>
+        <section id="projects" class="section">
+          <h2>Featured Projects</h2>
+          <div class="grid">
+            <article class="card" v-for="project in projects" :key="project.title">
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.description }}</p>
+              <div class="tags">
+                <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Skills</h2>
+          <ul class="skills">
+            <li v-for="skill in skills" :key="skill">{{ skill }}</li>
+          </ul>
+        </section>
+      </main>
+
+      <footer>
+        <p>© {{ new Date().getFullYear() }} {{ name }} · {{ location }}</p>
+      </footer>
+    </div>
+  </body>
+</html>
